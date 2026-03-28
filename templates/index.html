@@ -4,36 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>無料Notionテンプレート | Nihon Apps</title>
-  <meta name="description" content="日本のビジネスに最適化された無料Notionテンプレート16種。経費精算、稟議書、週報、1on1、採用管理など。すべて無料でNotionに複製できます。">
+  <meta name="description" content="日本のビジネスに最適化された無料Notionテンプレート22種。経費精算、稟議書、週報、1on1、採用管理など。すべて無料でNotionに複製できます。">
   <meta property="og:title" content="無料Notionテンプレート | Nihon Apps">
-  <meta property="og:description" content="日本のビジネスに最適化されたNotionテンプレート16種。すべて無料。">
+  <meta property="og:description" content="日本のビジネスに最適化されたNotionテンプレート22種。すべて無料。">
   <meta property="og:type" content="website">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif; line-height: 1.8; color: #333; background: #fafafa; }
     .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
     .lang-toggle { text-align: right; margin-bottom: 20px; }
     .lang-toggle button { background: #5c6ac4; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; }
     .lang-toggle button:hover { background: #4959bd; }
 
-    .hero { text-align: center; margin-bottom: 48px; }
+    .hero { text-align: center; margin-bottom: 32px; }
     .hero h1 { font-size: 32px; color: #1a1a2e; margin-bottom: 12px; }
     .hero p { font-size: 17px; color: #555; max-width: 600px; margin: 0 auto; }
 
-    .category { margin-bottom: 40px; }
-    .category h2 { font-size: 20px; color: #1a1a2e; border-bottom: 2px solid #5c6ac4; padding-bottom: 4px; margin-bottom: 20px; }
+    .search-bar { margin-bottom: 16px; }
+    .search-bar input {
+      width: 100%; padding: 12px 16px; font-size: 15px;
+      border: 1px solid #ddd; border-radius: 8px; outline: none;
+      background: #fff; transition: border-color 0.2s;
+    }
+    .search-bar input:focus { border-color: #5c6ac4; }
+
+    .filter-bar { display: flex; gap: 8px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
+    .filter-btn {
+      flex-shrink: 0; padding: 6px 14px; font-size: 13px; font-weight: 600;
+      border: 1.5px solid #5c6ac4; border-radius: 20px; background: #fff;
+      color: #5c6ac4; cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    }
+    .filter-btn:hover { background: #f0f0ff; }
+    .filter-btn.active { background: #5c6ac4; color: #fff; }
+
+    .tag-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .tag-chip {
+      padding: 4px 10px; font-size: 12px; font-weight: 500;
+      border: 1px solid #d0d0d0; border-radius: 14px; background: #f5f5f5;
+      color: #555; cursor: pointer; transition: all 0.15s;
+    }
+    .tag-chip:hover { background: #e8e8e8; }
+    .tag-chip.active { background: #e8f0fe; color: #1a73e8; border-color: #a8c7fa; }
+
+    .results-count { font-size: 13px; color: #888; margin-bottom: 16px; }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
 
     .card { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 24px; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; }
     .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .card.hidden { display: none; }
     .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
     .card-emoji { font-size: 28px; }
     .card-title { font-size: 16px; font-weight: 700; color: #1a1a2e; line-height: 1.4; }
-    .card-desc { font-size: 14px; color: #666; margin-bottom: 16px; flex: 1; }
+    .card-desc { font-size: 14px; color: #666; margin-bottom: 12px; flex: 1; }
     .badge { display: inline-block; background: #e8f5e9; color: #2e7d32; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 12px; margin-bottom: 12px; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; min-height: 22px; }
+    .tag-link {
+      font-size: 11px; color: #5c6ac4; background: #f0f0ff; padding: 2px 8px;
+      border-radius: 10px; cursor: pointer; transition: background 0.15s;
+    }
+    .tag-link:hover { background: #e0e0ff; }
+    .tag-link.active { background: #e8f0fe; color: #1a73e8; }
     .card-cta { display: block; text-align: center; background: #5c6ac4; color: #fff; text-decoration: none; padding: 10px 16px; border-radius: 6px; font-size: 14px; font-weight: 600; transition: background 0.2s; }
     .card-cta:hover { background: #4959bd; }
+
+    .no-results { text-align: center; padding: 40px 20px; color: #888; font-size: 15px; display: none; }
 
     .nav-links { text-align: center; margin-top: 40px; font-size: 14px; }
     .nav-links a { color: #5c6ac4; text-decoration: none; }
@@ -41,12 +77,11 @@
 
     footer { text-align: center; margin-top: 40px; color: #999; font-size: 13px; }
 
-    .section { display: block; }
-    .section.hidden { display: none; }
-
     @media (max-width: 640px) {
       .grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: 24px; }
+      .filter-bar { gap: 6px; }
+      .filter-btn { padding: 5px 10px; font-size: 12px; }
     }
   </style>
 </head>
@@ -56,268 +91,270 @@
       <button onclick="toggleLang()">English / 日本語</button>
     </div>
 
-    <!-- Japanese -->
-    <div id="ja" class="section">
-      <div class="hero">
-        <h1>無料Notionテンプレート</h1>
-        <p>日本のビジネスに最適化されたNotionテンプレート。すべて無料でお使いいただけます。ワンクリックでNotionに複製できます。</p>
-      </div>
-
-      <div class="category">
-        <h2>経理・総務</h2>
-        <div class="grid">
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">💰</span><span class="card-title">経費精算テンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">領収書管理からカテゴリ別集計まで。経費精算をNotionで「見える化」</p>
-            <a class="card-cta" href="https://www.notion.so/328c1869-aa6e-816a-8044-fb4b1d68b31e?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📝</span><span class="card-title">見積書管理テンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">見積の作成から受注まで。金額・ステータス・有効期限を一元管理</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8148-8e23-f48efbfcebf9?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📑</span><span class="card-title">契約管理テンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">契約書の期限・更新・関連書類を一元管理。更新漏れを防ぐ契約管理台帳</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8165-99a7-d51047a5af5c?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🏷️</span><span class="card-title">備品管理テンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">PC・モニター・オフィス備品の台帳管理。貸出・返却・廃棄まで追跡できる備品管理</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-811f-9532-f4bd7184e513?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📋</span><span class="card-title">稟議書・承認フローテンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">日本企業の稟議プロセスをNotionで完結。承認状況を可視化し、紙・Excel稟議から脱却</p>
-            <a class="card-cta" href="https://www.notion.so/32bc1869-aa6e-81c2-a4ae-d4781b56ed35?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="category">
-        <h2>人事・労務</h2>
-        <div class="grid">
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🎯</span><span class="card-title">採用管理テンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">求人→応募→面接→内定。採用パイプラインをNotionで一元管理</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81ab-8e05-d8223458b236?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🏖️</span><span class="card-title">有給・休暇管理テンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">有給残日数の自動計算＋申請管理。取得率も見える化</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81f7-ac39-f722bbdf03ac?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📊</span><span class="card-title">人事評価テンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">目標設定から評価面談まで。半期ごとの人事評価をNotionで運用できるテンプレート</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81ec-9eaf-c53450025ce1?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🎒</span><span class="card-title">新人オンボーディングキットテンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">入社初日〜3ヶ月の立ち上がりを仕組み化。チェックリスト＋研修記録＋メンター管理</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81e7-9e4f-c504a6667751?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">👤</span><span class="card-title">社員名簿テンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">入退社・部署異動・緊急連絡先まで。社員情報をNotionで一元管理</p>
-            <a class="card-cta" href="https://www.notion.so/32ac1869-aa6e-8189-82ed-cd587569a578?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="category">
-        <h2>チームワーク・コミュニケーション</h2>
-        <div class="grid">
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📓</span><span class="card-title">日報テンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">今日やったこと・明日やること・所感を毎日記録。振り返りが習慣になる日報</p>
-            <a class="card-cta" href="https://www.notion.so/328c1869-aa6e-813a-a60c-e22ee30d7ce8?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🗣️</span><span class="card-title">1on1・メンバー育成テンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">1on1の議事録・アクションアイテム・成長記録をNotionに蓄積。育成を仕組み化</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8162-b7c5-e22403da9a52?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📚</span><span class="card-title">社内FAQ・ナレッジベーステンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">「それ前も聞かれた」を解決。社内ナレッジをNotionに集約</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8175-b180-fd170ef7175f?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📊</span><span class="card-title">プロジェクト管理テンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">タスク・マイルストーン・進捗率。プロジェクトの全体像を一目で把握</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-818c-80d6-fcb76c1ee684?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="category">
-        <h2>営業・フリーランス</h2>
-        <div class="grid">
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🤝</span><span class="card-title">顧客管理CRMテンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">顧客情報＋対応履歴＋商談管理。NotionでシンプルCRM</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8164-b356-f8cbea5e4edc?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">💼</span><span class="card-title">フリーランス業務パックテンプレート</span></div>
-            <span class="badge">無料</span>
-            <p class="card-desc">案件管理・請求書・収支・タスクを1つのワークスペースで完結。フリーランスの業務OS</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8140-8adb-c81c04a73752?duplicate=true" target="_blank" rel="noopener">Notionで複製する</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="nav-links">
-        <a href="../">プライバシーポリシー</a>
-      </div>
+    <div class="hero">
+      <h1 data-ja="無料Notionテンプレート" data-en="Free Notion Templates">無料Notionテンプレート</h1>
+      <p data-ja="日本のビジネスに最適化されたNotionテンプレート。すべて無料でお使いいただけます。ワンクリックでNotionに複製できます。" data-en="Notion templates optimized for Japanese business. All free to use. Duplicate to your Notion workspace with one click.">日本のビジネスに最適化されたNotionテンプレート。すべて無料でお使いいただけます。ワンクリックでNotionに複製できます。</p>
     </div>
 
-    <!-- English -->
-    <div id="en" class="section hidden">
-      <div class="hero">
-        <h1>Free Notion Templates</h1>
-        <p>Notion templates optimized for Japanese business. All free to use. Duplicate to your Notion workspace with one click.</p>
-      </div>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="テンプレートを検索...">
+    </div>
 
-      <div class="category">
-        <h2>Accounting & General Affairs</h2>
-        <div class="grid">
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">💰</span><span class="card-title">Expense Tracker</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Receipt management to category-based summaries. Visualize expense tracking in Notion.</p>
-            <a class="card-cta" href="https://www.notion.so/328c1869-aa6e-816a-8044-fb4b1d68b31e?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
+    <div class="filter-bar" id="category-filters">
+      <button class="filter-btn active" data-category="all" data-ja="すべて(22)" data-en="All(22)">すべて(22)</button>
+      <button class="filter-btn" data-category="accounting" data-ja="経理・総務(5)" data-en="Accounting & General Affairs(5)">経理・総務(5)</button>
+      <button class="filter-btn" data-category="hr" data-ja="人事・労務(8)" data-en="HR & Labor(8)">人事・労務(8)</button>
+      <button class="filter-btn" data-category="teamwork" data-ja="チームワーク・コミュニケーション(6)" data-en="Teamwork & Communication(6)">チームワーク・コミュニケーション(6)</button>
+      <button class="filter-btn" data-category="sales" data-ja="営業・フリーランス(3)" data-en="Sales & Freelance(3)">営業・フリーランス(3)</button>
+    </div>
+
+    <div class="tag-bar" id="tag-filters">
+      <button class="tag-chip" data-tag="keiri" data-ja="経理" data-en="Accounting">経理</button>
+      <button class="tag-chip" data-tag="soumu" data-ja="総務" data-en="General Affairs">総務</button>
+      <button class="tag-chip" data-tag="jinji" data-ja="人事" data-en="HR">人事</button>
+      <button class="tag-chip" data-tag="eigyo" data-ja="営業" data-en="Sales">営業</button>
+      <button class="tag-chip" data-tag="houmu" data-ja="法務" data-en="Legal">法務</button>
+      <button class="tag-chip" data-tag="freelance" data-ja="フリーランス" data-en="Freelance">フリーランス</button>
+      <button class="tag-chip" data-tag="mokuhyo" data-ja="目標管理" data-en="Goals">目標管理</button>
+      <button class="tag-chip" data-tag="saiyou" data-ja="採用" data-en="Recruitment">採用</button>
+      <button class="tag-chip" data-tag="crm" data-ja="顧客管理" data-en="CRM">顧客管理</button>
+      <button class="tag-chip" data-tag="project" data-ja="プロジェクト" data-en="Project">プロジェクト</button>
+      <button class="tag-chip" data-tag="checklist" data-ja="チェックリスト" data-en="Checklist">チェックリスト</button>
+      <button class="tag-chip" data-tag="shinki" data-ja="新人・入社" data-en="Onboarding">新人・入社</button>
+      <button class="tag-chip" data-tag="meeting" data-ja="会議・議事録" data-en="Meeting">会議・議事録</button>
+      <button class="tag-chip" data-tag="report" data-ja="日報・週報" data-en="Reports">日報・週報</button>
+      <button class="tag-chip" data-tag="approval" data-ja="承認・稟議" data-en="Approval">承認・稟議</button>
+    </div>
+
+    <div class="results-count" id="results-count">22件のテンプレート</div>
+
+    <div class="grid" id="template-grid">
+        <div class="card" data-key="expense" data-category="accounting" data-tags="keiri" data-search-ja="経費精算テンプレート 領収書管理からカテゴリ別集計まで。経費精算をnotionで「見える化」" data-search-en="expense tracker receipt management to category-based summaries. visualize expense tracking in notion.">
+          <div class="card-header">
+            <span class="card-emoji">💰</span>
+            <span class="card-title" data-ja="経費精算テンプレート" data-en="Expense Tracker">経費精算テンプレート</span>
           </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📝</span><span class="card-title">Quote Management</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">From quote creation to order acceptance. Manage amounts, status, and expiry dates in one place.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8148-8e23-f48efbfcebf9?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📑</span><span class="card-title">Contract Management</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Centrally manage contract deadlines, renewals, and related documents. Never miss a renewal.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8165-99a7-d51047a5af5c?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🏷️</span><span class="card-title">Equipment Inventory</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Track PCs, monitors, and office equipment. Manage lending, returns, and disposal.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-811f-9532-f4bd7184e513?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📋</span><span class="card-title">Approval Workflow (Ringi)</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Digitize the Japanese ringi approval process in Notion. Visualize approval status.</p>
-            <a class="card-cta" href="https://www.notion.so/32bc1869-aa6e-81c2-a4ae-d4781b56ed35?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="領収書管理からカテゴリ別集計まで。経費精算をNotionで「見える化」" data-en="Receipt management to category-based summaries. Visualize expense tracking in Notion.">領収書管理からカテゴリ別集計まで。経費精算をNotionで「見える化」</p>
+          <div class="card-tags"><span class="tag-link" data-tag="keiri" data-ja="経理" data-en="Accounting">経理</span></div>
+          <a class="card-cta" href="https://www.notion.so/328c1869-aa6e-816a-8044-fb4b1d68b31e?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
         </div>
-      </div>
-
-      <div class="category">
-        <h2>HR & Labor</h2>
-        <div class="grid">
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🎯</span><span class="card-title">Recruitment Pipeline</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Job posting to offer. Manage the entire recruitment pipeline in Notion.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81ab-8e05-d8223458b236?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
+        <div class="card" data-key="quote" data-category="accounting" data-tags="keiri,eigyo" data-search-ja="見積書管理テンプレート 見積の作成から受注まで。金額・ステータス・有効期限を一元管理" data-search-en="quote management from quote creation to order acceptance. manage amounts, status, and expiry dates in one place.">
+          <div class="card-header">
+            <span class="card-emoji">📝</span>
+            <span class="card-title" data-ja="見積書管理テンプレート" data-en="Quote Management">見積書管理テンプレート</span>
           </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🏖️</span><span class="card-title">Leave Management</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Auto-calculate remaining PTO and manage requests. Visualize usage rates.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81f7-ac39-f722bbdf03ac?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📊</span><span class="card-title">Performance Review</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Goal setting to review meetings. Run semi-annual performance reviews in Notion.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81ec-9eaf-c53450025ce1?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🎒</span><span class="card-title">Employee Onboarding Kit</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Systematize Day 1 through 3-month ramp-up. Checklists, training logs, and mentor management.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81e7-9e4f-c504a6667751?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">👤</span><span class="card-title">Employee Directory</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Manage employee info, department changes, and emergency contacts in Notion.</p>
-            <a class="card-cta" href="https://www.notion.so/32ac1869-aa6e-8189-82ed-cd587569a578?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="見積の作成から受注まで。金額・ステータス・有効期限を一元管理" data-en="From quote creation to order acceptance. Manage amounts, status, and expiry dates in one place.">見積の作成から受注まで。金額・ステータス・有効期限を一元管理</p>
+          <div class="card-tags"><span class="tag-link" data-tag="keiri" data-ja="経理" data-en="Accounting">経理</span><span class="tag-link" data-tag="eigyo" data-ja="営業" data-en="Sales">営業</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8148-8e23-f48efbfcebf9?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
         </div>
-      </div>
-
-      <div class="category">
-        <h2>Teamwork & Communication</h2>
-        <div class="grid">
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📓</span><span class="card-title">Daily Report</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Record today's work, tomorrow's plan, and reflections daily. Build a review habit.</p>
-            <a class="card-cta" href="https://www.notion.so/328c1869-aa6e-813a-a60c-e22ee30d7ce8?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
+        <div class="card" data-key="equipment" data-category="accounting" data-tags="soumu" data-search-ja="備品管理テンプレート pc・モニター・オフィス備品の台帳管理。貸出・返却・廃棄まで追跡できる備品管理" data-search-en="equipment inventory track pcs, monitors, and office equipment. manage lending, returns, and disposal.">
+          <div class="card-header">
+            <span class="card-emoji">🏷️</span>
+            <span class="card-title" data-ja="備品管理テンプレート" data-en="Equipment Inventory">備品管理テンプレート</span>
           </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🗣️</span><span class="card-title">1-on-1 Meeting & Growth</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Accumulate 1-on-1 notes, action items, and growth records in Notion.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8162-b7c5-e22403da9a52?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📚</span><span class="card-title">Internal FAQ & Knowledge Base</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Stop answering the same questions. Centralize internal knowledge in Notion.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8175-b180-fd170ef7175f?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">📊</span><span class="card-title">Project Management</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Tasks, milestones, and progress. See the entire project at a glance.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-818c-80d6-fcb76c1ee684?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="PC・モニター・オフィス備品の台帳管理。貸出・返却・廃棄まで追跡できる備品管理" data-en="Track PCs, monitors, and office equipment. Manage lending, returns, and disposal.">PC・モニター・オフィス備品の台帳管理。貸出・返却・廃棄まで追跡できる備品管理</p>
+          <div class="card-tags"><span class="tag-link" data-tag="soumu" data-ja="総務" data-en="General Affairs">総務</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-811f-9532-f4bd7184e513?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
         </div>
-      </div>
-
-      <div class="category">
-        <h2>Sales & Freelance</h2>
-        <div class="grid">
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">🤝</span><span class="card-title">Simple CRM</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Customer info, interaction history, and deal pipeline. Simple CRM in Notion.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8164-b356-f8cbea5e4edc?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
+        <div class="card" data-key="contract" data-category="accounting" data-tags="houmu,soumu" data-search-ja="契約管理テンプレート 契約書の期限・更新・関連書類を一元管理。更新漏れを防ぐ契約管理台帳" data-search-en="contract management centrally manage contract deadlines, renewals, and related documents. never miss a renewal.">
+          <div class="card-header">
+            <span class="card-emoji">📑</span>
+            <span class="card-title" data-ja="契約管理テンプレート" data-en="Contract Management">契約管理テンプレート</span>
           </div>
-          <div class="card">
-            <div class="card-header"><span class="card-emoji">💼</span><span class="card-title">Freelance Business Suite</span></div>
-            <span class="badge">Free</span>
-            <p class="card-desc">Projects, invoices, finances, and tasks in one workspace. A business OS for freelancers.</p>
-            <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8140-8adb-c81c04a73752?duplicate=true" target="_blank" rel="noopener">Duplicate to Notion</a>
-          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="契約書の期限・更新・関連書類を一元管理。更新漏れを防ぐ契約管理台帳" data-en="Centrally manage contract deadlines, renewals, and related documents. Never miss a renewal.">契約書の期限・更新・関連書類を一元管理。更新漏れを防ぐ契約管理台帳</p>
+          <div class="card-tags"><span class="tag-link" data-tag="houmu" data-ja="法務" data-en="Legal">法務</span><span class="tag-link" data-tag="soumu" data-ja="総務" data-en="General Affairs">総務</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8165-99a7-d51047a5af5c?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
         </div>
-      </div>
+        <div class="card" data-key="ringi" data-category="accounting" data-tags="approval,soumu" data-search-ja="稟議書・承認フローテンプレート 日本企業の稟議プロセスをnotionで完結。承認状況を可視化し、紙・excel稟議から脱却" data-search-en="approval workflow (ringi) digitize the japanese ringi approval process in notion. visualize approval status.">
+          <div class="card-header">
+            <span class="card-emoji">📋</span>
+            <span class="card-title" data-ja="稟議書・承認フローテンプレート" data-en="Approval Workflow (Ringi)">稟議書・承認フローテンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="日本企業の稟議プロセスをNotionで完結。承認状況を可視化し、紙・Excel稟議から脱却" data-en="Digitize the Japanese ringi approval process in Notion. Visualize approval status.">日本企業の稟議プロセスをNotionで完結。承認状況を可視化し、紙・Excel稟議から脱却</p>
+          <div class="card-tags"><span class="tag-link" data-tag="approval" data-ja="承認・稟議" data-en="Approval">承認・稟議</span><span class="tag-link" data-tag="soumu" data-ja="総務" data-en="General Affairs">総務</span></div>
+          <a class="card-cta" href="https://www.notion.so/32bc1869-aa6e-81c2-a4ae-d4781b56ed35?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="leave" data-category="hr" data-tags="jinji" data-search-ja="有給・休暇管理テンプレート 有給残日数の自動計算＋申請管理。取得率も見える化" data-search-en="leave management auto-calculate remaining pto and manage requests. visualize usage rates.">
+          <div class="card-header">
+            <span class="card-emoji">🏖️</span>
+            <span class="card-title" data-ja="有給・休暇管理テンプレート" data-en="Leave Management">有給・休暇管理テンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="有給残日数の自動計算＋申請管理。取得率も見える化" data-en="Auto-calculate remaining PTO and manage requests. Visualize usage rates.">有給残日数の自動計算＋申請管理。取得率も見える化</p>
+          <div class="card-tags"><span class="tag-link" data-tag="jinji" data-ja="人事" data-en="HR">人事</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81f7-ac39-f722bbdf03ac?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="recruitment" data-category="hr" data-tags="jinji,saiyou" data-search-ja="採用管理テンプレート 求人→応募→面接→内定。採用パイプラインをnotionで一元管理" data-search-en="recruitment pipeline job posting to offer. manage the entire recruitment pipeline in notion.">
+          <div class="card-header">
+            <span class="card-emoji">🎯</span>
+            <span class="card-title" data-ja="採用管理テンプレート" data-en="Recruitment Pipeline">採用管理テンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="求人→応募→面接→内定。採用パイプラインをNotionで一元管理" data-en="Job posting to offer. Manage the entire recruitment pipeline in Notion.">求人→応募→面接→内定。採用パイプラインをNotionで一元管理</p>
+          <div class="card-tags"><span class="tag-link" data-tag="jinji" data-ja="人事" data-en="HR">人事</span><span class="tag-link" data-tag="saiyou" data-ja="採用" data-en="Recruitment">採用</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81ab-8e05-d8223458b236?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="onboarding" data-category="hr" data-tags="jinji,shinki,checklist" data-search-ja="新人オンボーディングキットテンプレート 入社初日〜3ヶ月の立ち上がりを仕組み化。チェックリスト＋研修記録＋メンター管理" data-search-en="employee onboarding kit systematize day 1 through 3-month ramp-up. checklists, training logs, and mentor management.">
+          <div class="card-header">
+            <span class="card-emoji">🎒</span>
+            <span class="card-title" data-ja="新人オンボーディングキットテンプレート" data-en="Employee Onboarding Kit">新人オンボーディングキットテンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="入社初日〜3ヶ月の立ち上がりを仕組み化。チェックリスト＋研修記録＋メンター管理" data-en="Systematize Day 1 through 3-month ramp-up. Checklists, training logs, and mentor management.">入社初日〜3ヶ月の立ち上がりを仕組み化。チェックリスト＋研修記録＋メンター管理</p>
+          <div class="card-tags"><span class="tag-link" data-tag="jinji" data-ja="人事" data-en="HR">人事</span><span class="tag-link" data-tag="shinki" data-ja="新人・入社" data-en="Onboarding">新人・入社</span><span class="tag-link" data-tag="checklist" data-ja="チェックリスト" data-en="Checklist">チェックリスト</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81e7-9e4f-c504a6667751?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="hr-review" data-category="hr" data-tags="jinji,mokuhyo" data-search-ja="人事評価テンプレート 目標設定から評価面談まで。半期ごとの人事評価をnotionで運用できるテンプレート" data-search-en="performance review goal setting to review meetings. run semi-annual performance reviews in notion.">
+          <div class="card-header">
+            <span class="card-emoji">📊</span>
+            <span class="card-title" data-ja="人事評価テンプレート" data-en="Performance Review">人事評価テンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="目標設定から評価面談まで。半期ごとの人事評価をNotionで運用できるテンプレート" data-en="Goal setting to review meetings. Run semi-annual performance reviews in Notion.">目標設定から評価面談まで。半期ごとの人事評価をNotionで運用できるテンプレート</p>
+          <div class="card-tags"><span class="tag-link" data-tag="jinji" data-ja="人事" data-en="HR">人事</span><span class="tag-link" data-tag="mokuhyo" data-ja="目標管理" data-en="Goals">目標管理</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-81ec-9eaf-c53450025ce1?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="employee-directory" data-category="hr" data-tags="jinji,soumu" data-search-ja="社員名簿テンプレート 入退社・部署異動・緊急連絡先まで。社員情報をnotionで一元管理" data-search-en="employee directory manage employee info, department changes, and emergency contacts in notion.">
+          <div class="card-header">
+            <span class="card-emoji">👤</span>
+            <span class="card-title" data-ja="社員名簿テンプレート" data-en="Employee Directory">社員名簿テンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="入退社・部署異動・緊急連絡先まで。社員情報をNotionで一元管理" data-en="Manage employee info, department changes, and emergency contacts in Notion.">入退社・部署異動・緊急連絡先まで。社員情報をNotionで一元管理</p>
+          <div class="card-tags"><span class="tag-link" data-tag="jinji" data-ja="人事" data-en="HR">人事</span><span class="tag-link" data-tag="soumu" data-ja="総務" data-en="General Affairs">総務</span></div>
+          <a class="card-cta" href="https://www.notion.so/32ac1869-aa6e-8189-82ed-cd587569a578?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="law-reform-2026" data-category="hr" data-tags="jinji,houmu,checklist" data-search-ja="2026年4月 法改正対応チェックリスト 2026年4月施行の法改正を一覧化。対応漏れゼロで新年度を迎える" data-search-en="2026 legal reform checklist checklist for april 2026 labor law reforms. stay compliant with the latest regulations.">
+          <div class="card-header">
+            <span class="card-emoji">⚖️</span>
+            <span class="card-title" data-ja="2026年4月 法改正対応チェックリスト" data-en="2026 Legal Reform Checklist">2026年4月 法改正対応チェックリスト</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="2026年4月施行の法改正を一覧化。対応漏れゼロで新年度を迎える" data-en="Checklist for April 2026 labor law reforms. Stay compliant with the latest regulations.">2026年4月施行の法改正を一覧化。対応漏れゼロで新年度を迎える</p>
+          <div class="card-tags"><span class="tag-link" data-tag="jinji" data-ja="人事" data-en="HR">人事</span><span class="tag-link" data-tag="houmu" data-ja="法務" data-en="Legal">法務</span><span class="tag-link" data-tag="checklist" data-ja="チェックリスト" data-en="Checklist">チェックリスト</span></div>
+          <a class="card-cta" href="https://www.notion.so/330c1869-aa6e-81ab-b277-c5248be97716?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="new-employee-onboard" data-category="hr" data-tags="jinji,shinki,checklist" data-search-ja="新入社員 受入チェックリスト 入社手続き22項目を完全網羅。受入準備から初日対応まで漏れゼロ" data-search-en="new hire onboarding checklist comprehensive checklist for welcoming new employees. from day 1 setup to 3-month integration.">
+          <div class="card-header">
+            <span class="card-emoji">🎒</span>
+            <span class="card-title" data-ja="新入社員 受入チェックリスト" data-en="New Hire Onboarding Checklist">新入社員 受入チェックリスト</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="入社手続き22項目を完全網羅。受入準備から初日対応まで漏れゼロ" data-en="Comprehensive checklist for welcoming new employees. From Day 1 setup to 3-month integration.">入社手続き22項目を完全網羅。受入準備から初日対応まで漏れゼロ</p>
+          <div class="card-tags"><span class="tag-link" data-tag="jinji" data-ja="人事" data-en="HR">人事</span><span class="tag-link" data-tag="shinki" data-ja="新人・入社" data-en="Onboarding">新人・入社</span><span class="tag-link" data-tag="checklist" data-ja="チェックリスト" data-en="Checklist">チェックリスト</span></div>
+          <a class="card-cta" href="https://www.notion.so/330c1869-aa6e-81b2-9a6e-fc6f5841ab48?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="okr" data-category="hr" data-tags="mokuhyo" data-search-ja="okr・目標管理テンプレート 会社→チーム→個人の目標をつなげる。四半期okrの設定・進捗・振り返りをnotionで完結" data-search-en="okr goal management set objectives and key results. align team goals and track progress quarterly.">
+          <div class="card-header">
+            <span class="card-emoji">🎯</span>
+            <span class="card-title" data-ja="OKR・目標管理テンプレート" data-en="OKR Goal Management">OKR・目標管理テンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="会社→チーム→個人の目標をつなげる。四半期OKRの設定・進捗・振り返りをNotionで完結" data-en="Set objectives and key results. Align team goals and track progress quarterly.">会社→チーム→個人の目標をつなげる。四半期OKRの設定・進捗・振り返りをNotionで完結</p>
+          <div class="card-tags"><span class="tag-link" data-tag="mokuhyo" data-ja="目標管理" data-en="Goals">目標管理</span></div>
+          <a class="card-cta" href="https://www.notion.so/331c1869-aa6e-8134-b2f4-deb4e5367a97?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="daily-report" data-category="teamwork" data-tags="report" data-search-ja="日報テンプレート 今日やったこと・明日やること・所感を毎日記録。振り返りが習慣になる日報" data-search-en="daily report record today's work, tomorrow's plan, and reflections daily. build a review habit.">
+          <div class="card-header">
+            <span class="card-emoji">📓</span>
+            <span class="card-title" data-ja="日報テンプレート" data-en="Daily Report">日報テンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="今日やったこと・明日やること・所感を毎日記録。振り返りが習慣になる日報" data-en="Record today's work, tomorrow's plan, and reflections daily. Build a review habit.">今日やったこと・明日やること・所感を毎日記録。振り返りが習慣になる日報</p>
+          <div class="card-tags"><span class="tag-link" data-tag="report" data-ja="日報・週報" data-en="Reports">日報・週報</span></div>
+          <a class="card-cta" href="https://www.notion.so/328c1869-aa6e-813a-a60c-e22ee30d7ce8?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="knowledge-base" data-category="teamwork" data-tags="soumu" data-search-ja="社内faq・ナレッジベーステンプレート 「それ前も聞かれた」を解決。社内ナレッジをnotionに集約" data-search-en="internal faq & knowledge base stop answering the same questions. centralize internal knowledge in notion.">
+          <div class="card-header">
+            <span class="card-emoji">📚</span>
+            <span class="card-title" data-ja="社内FAQ・ナレッジベーステンプレート" data-en="Internal FAQ & Knowledge Base">社内FAQ・ナレッジベーステンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="「それ前も聞かれた」を解決。社内ナレッジをNotionに集約" data-en="Stop answering the same questions. Centralize internal knowledge in Notion.">「それ前も聞かれた」を解決。社内ナレッジをNotionに集約</p>
+          <div class="card-tags"><span class="tag-link" data-tag="soumu" data-ja="総務" data-en="General Affairs">総務</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8175-b180-fd170ef7175f?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="project" data-category="teamwork" data-tags="project" data-search-ja="プロジェクト管理テンプレート タスク・マイルストーン・進捗率。プロジェクトの全体像を一目で把握" data-search-en="project management tasks, milestones, and progress. see the entire project at a glance.">
+          <div class="card-header">
+            <span class="card-emoji">📊</span>
+            <span class="card-title" data-ja="プロジェクト管理テンプレート" data-en="Project Management">プロジェクト管理テンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="タスク・マイルストーン・進捗率。プロジェクトの全体像を一目で把握" data-en="Tasks, milestones, and progress. See the entire project at a glance.">タスク・マイルストーン・進捗率。プロジェクトの全体像を一目で把握</p>
+          <div class="card-tags"><span class="tag-link" data-tag="project" data-ja="プロジェクト" data-en="Project">プロジェクト</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-818c-80d6-fcb76c1ee684?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="1on1" data-category="teamwork" data-tags="meeting,jinji" data-search-ja="1on1・メンバー育成テンプレート 1on1の議事録・アクションアイテム・成長記録をnotionに蓄積。育成を仕組み化" data-search-en="1-on-1 meeting & growth accumulate 1-on-1 notes, action items, and growth records in notion.">
+          <div class="card-header">
+            <span class="card-emoji">🗣️</span>
+            <span class="card-title" data-ja="1on1・メンバー育成テンプレート" data-en="1-on-1 Meeting & Growth">1on1・メンバー育成テンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="1on1の議事録・アクションアイテム・成長記録をNotionに蓄積。育成を仕組み化" data-en="Accumulate 1-on-1 notes, action items, and growth records in Notion.">1on1の議事録・アクションアイテム・成長記録をNotionに蓄積。育成を仕組み化</p>
+          <div class="card-tags"><span class="tag-link" data-tag="meeting" data-ja="会議・議事録" data-en="Meeting">会議・議事録</span><span class="tag-link" data-tag="jinji" data-ja="人事" data-en="HR">人事</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8162-b7c5-e22403da9a52?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="meeting-minutes" data-category="teamwork" data-tags="meeting" data-search-ja="議事録管理テンプレート 会議の記録・決定事項・アクションアイテムをnotionで一元管理。議事録の属人化を解消" data-search-en="meeting minutes organize meeting agendas, notes, and action items. never lose track of decisions.">
+          <div class="card-header">
+            <span class="card-emoji">🗒️</span>
+            <span class="card-title" data-ja="議事録管理テンプレート" data-en="Meeting Minutes">議事録管理テンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="会議の記録・決定事項・アクションアイテムをNotionで一元管理。議事録の属人化を解消" data-en="Organize meeting agendas, notes, and action items. Never lose track of decisions.">会議の記録・決定事項・アクションアイテムをNotionで一元管理。議事録の属人化を解消</p>
+          <div class="card-tags"><span class="tag-link" data-tag="meeting" data-ja="会議・議事録" data-en="Meeting">会議・議事録</span></div>
+          <a class="card-cta" href="https://www.notion.so/331c1869-aa6e-8104-b394-cbed5f665b7a?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="handover" data-category="teamwork" data-tags="project,soumu" data-search-ja="業務引き継ぎ・属人化解消テンプレート 異動・退職時の引き継ぎを「抜け漏れゼロ」に。業務棚卸し＋引き継ぎスケジュールで属人化を解消" data-search-en="work handover structured handover documentation to eliminate knowledge silos and ensure smooth transitions.">
+          <div class="card-header">
+            <span class="card-emoji">🔄</span>
+            <span class="card-title" data-ja="業務引き継ぎ・属人化解消テンプレート" data-en="Work Handover">業務引き継ぎ・属人化解消テンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="異動・退職時の引き継ぎを「抜け漏れゼロ」に。業務棚卸し＋引き継ぎスケジュールで属人化を解消" data-en="Structured handover documentation to eliminate knowledge silos and ensure smooth transitions.">異動・退職時の引き継ぎを「抜け漏れゼロ」に。業務棚卸し＋引き継ぎスケジュールで属人化を解消</p>
+          <div class="card-tags"><span class="tag-link" data-tag="project" data-ja="プロジェクト" data-en="Project">プロジェクト</span><span class="tag-link" data-tag="soumu" data-ja="総務" data-en="General Affairs">総務</span></div>
+          <a class="card-cta" href="https://www.notion.so/331c1869-aa6e-810e-8812-c0828e67013a?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="crm" data-category="sales" data-tags="crm,eigyo" data-search-ja="顧客管理crmテンプレート 顧客情報＋対応履歴＋商談管理。notionでシンプルcrm" data-search-en="simple crm customer info, interaction history, and deal pipeline. simple crm in notion.">
+          <div class="card-header">
+            <span class="card-emoji">🤝</span>
+            <span class="card-title" data-ja="顧客管理CRMテンプレート" data-en="Simple CRM">顧客管理CRMテンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="顧客情報＋対応履歴＋商談管理。NotionでシンプルCRM" data-en="Customer info, interaction history, and deal pipeline. Simple CRM in Notion.">顧客情報＋対応履歴＋商談管理。NotionでシンプルCRM</p>
+          <div class="card-tags"><span class="tag-link" data-tag="crm" data-ja="顧客管理" data-en="CRM">顧客管理</span><span class="tag-link" data-tag="eigyo" data-ja="営業" data-en="Sales">営業</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8164-b356-f8cbea5e4edc?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="freelance-suite" data-category="sales" data-tags="freelance,keiri" data-search-ja="フリーランス業務パックテンプレート 案件管理・請求書・収支・タスクを1つのワークスペースで完結。フリーランスの業務os" data-search-en="freelance business suite projects, invoices, finances, and tasks in one workspace. a business os for freelancers.">
+          <div class="card-header">
+            <span class="card-emoji">💼</span>
+            <span class="card-title" data-ja="フリーランス業務パックテンプレート" data-en="Freelance Business Suite">フリーランス業務パックテンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="案件管理・請求書・収支・タスクを1つのワークスペースで完結。フリーランスの業務OS" data-en="Projects, invoices, finances, and tasks in one workspace. A business OS for freelancers.">案件管理・請求書・収支・タスクを1つのワークスペースで完結。フリーランスの業務OS</p>
+          <div class="card-tags"><span class="tag-link" data-tag="freelance" data-ja="フリーランス" data-en="Freelance">フリーランス</span><span class="tag-link" data-tag="keiri" data-ja="経理" data-en="Accounting">経理</span></div>
+          <a class="card-cta" href="https://www.notion.so/329c1869-aa6e-8140-8adb-c81c04a73752?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+        <div class="card" data-key="sales-pipeline" data-category="sales" data-tags="eigyo,crm" data-search-ja="営業管理・商談パイプラインテンプレート 商談の進捗・金額・確度を一元管理。営業チームの売上見込みを「見える化」" data-search-en="sales pipeline track deals from lead to close. visualize your sales funnel and forecast revenue.">
+          <div class="card-header">
+            <span class="card-emoji">📈</span>
+            <span class="card-title" data-ja="営業管理・商談パイプラインテンプレート" data-en="Sales Pipeline">営業管理・商談パイプラインテンプレート</span>
+          </div>
+          <span class="badge" data-ja="無料" data-en="Free">無料</span>
+          <p class="card-desc" data-ja="商談の進捗・金額・確度を一元管理。営業チームの売上見込みを「見える化」" data-en="Track deals from lead to close. Visualize your sales funnel and forecast revenue.">商談の進捗・金額・確度を一元管理。営業チームの売上見込みを「見える化」</p>
+          <div class="card-tags"><span class="tag-link" data-tag="eigyo" data-ja="営業" data-en="Sales">営業</span><span class="tag-link" data-tag="crm" data-ja="顧客管理" data-en="CRM">顧客管理</span></div>
+          <a class="card-cta" href="https://www.notion.so/331c1869-aa6e-81cf-9b5e-c6b26e40bfcb?duplicate=true" target="_blank" rel="noopener" data-ja="Notionで複製する" data-en="Duplicate to Notion">Notionで複製する</a>
+        </div>
+    </div>
 
-      <div class="nav-links">
-        <a href="../">Privacy Policy</a>
-      </div>
+    <div class="no-results" id="no-results" data-ja="条件に一致するテンプレートが見つかりませんでした" data-en="No templates found matching your criteria">条件に一致するテンプレートが見つかりませんでした</div>
+
+    <div class="nav-links">
+      <a href="../" data-ja="プライバシーポリシー" data-en="Privacy Policy">プライバシーポリシー</a>
     </div>
 
     <footer>
@@ -326,16 +363,94 @@
   </div>
 
   <script>
-    function toggleLang() {
-      const ja = document.getElementById('ja');
-      const en = document.getElementById('en');
-      ja.classList.toggle('hidden');
-      en.classList.toggle('hidden');
-    }
-    if (navigator.language && !navigator.language.startsWith('ja')) {
-      document.getElementById('ja').classList.add('hidden');
-      document.getElementById('en').classList.remove('hidden');
-    }
+    (function() {
+      var lang = 'ja';
+      var currentCategory = 'all';
+      var activeTags = {};
+      var searchTerm = '';
+      var debounceTimer;
+
+      var searchInput = document.getElementById('search-input');
+      var resultsCount = document.getElementById('results-count');
+      var noResults = document.getElementById('no-results');
+      var cards = document.querySelectorAll('.card');
+
+      // Category filter (radio-style)
+      document.querySelectorAll('.filter-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          document.querySelector('.filter-btn.active').classList.remove('active');
+          btn.classList.add('active');
+          currentCategory = btn.dataset.category;
+          applyFilters();
+        });
+      });
+
+      // Tag filter (toggle)
+      function handleTagClick(tag) {
+        if (activeTags[tag]) { delete activeTags[tag]; }
+        else { activeTags[tag] = true; }
+        document.querySelectorAll('[data-tag="' + tag + '"]').forEach(function(el) {
+          el.classList.toggle('active', !!activeTags[tag]);
+        });
+        applyFilters();
+      }
+
+      document.querySelectorAll('.tag-chip').forEach(function(chip) {
+        chip.addEventListener('click', function() { handleTagClick(chip.dataset.tag); });
+      });
+      document.querySelectorAll('.tag-link').forEach(function(link) {
+        link.addEventListener('click', function(e) { e.stopPropagation(); handleTagClick(link.dataset.tag); });
+      });
+
+      // Search (debounced)
+      searchInput.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() {
+          searchTerm = searchInput.value.toLowerCase();
+          applyFilters();
+        }, 200);
+      });
+
+      function applyFilters() {
+        var count = 0;
+        var hasActiveTags = Object.keys(activeTags).length > 0;
+        cards.forEach(function(card) {
+          var matchCat = currentCategory === 'all' || card.dataset.category === currentCategory;
+          var matchTag = !hasActiveTags ||
+            card.dataset.tags.split(',').some(function(t) { return activeTags[t]; });
+          var searchField = lang === 'ja' ? card.dataset.searchJa : card.dataset.searchEn;
+          var matchSearch = !searchTerm || searchField.indexOf(searchTerm) !== -1;
+          var visible = matchCat && matchTag && matchSearch;
+          card.classList.toggle('hidden', !visible);
+          if (visible) count++;
+        });
+        resultsCount.textContent = lang === 'ja'
+          ? count + '件のテンプレート'
+          : count + ' templates';
+        noResults.style.display = count === 0 ? 'block' : 'none';
+      }
+
+      // Language toggle
+      window.toggleLang = function() {
+        lang = lang === 'ja' ? 'en' : 'ja';
+        document.querySelectorAll('[data-ja][data-en]').forEach(function(el) {
+          if (el.tagName === 'INPUT') {
+            el.placeholder = el.dataset[lang] || el.placeholder;
+          } else if (el.tagName === 'A' && el.dataset[lang]) {
+            el.textContent = el.dataset[lang];
+          } else {
+            el.textContent = el.dataset[lang];
+          }
+        });
+        searchInput.placeholder = lang === 'ja' ? 'テンプレートを検索...' : 'Search templates...';
+        applyFilters();
+      };
+
+      // Initial language detection
+      if (navigator.language && !navigator.language.startsWith('ja')) {
+        window.toggleLang();
+      }
+    })();
   </script>
 </body>
 </html>
